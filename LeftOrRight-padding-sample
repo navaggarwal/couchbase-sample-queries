@@ -1,0 +1,29 @@
+Problem : Suppose you have some data on which you want to do left or right padding. 
+But couchbase doesn't provide any inbuilt function for that.
+
+Sample Bucket :
+"products" :
+{
+"type" : "products",
+"id" : "123455677",
+"name" : "ABC",
+"ean" : "5012345678"
+}
+
+Here we want to have ean with leading zero's and of length 12 from database itself.
+
+
+Solution :
+
+Left Padding : REPEAT('0', (12 - LENGTH(products.ean)))|| '' ||products.ean)
+
+Query:
+
+SELECT REPEAT('0', (12 - LENGTH(products.ean)))|| '' ||products.ean) AS EAN 
+FROM `products-sample` AS products
+WHERE LENGTH(products.ean) < 12 
+AND products.type = 'products'
+
+Similary, you can have right padding on any column.
+
+Right Padding : products.ean || '' ||REPEAT('0', (12 - LENGTH(products.ean)))
