@@ -1,8 +1,9 @@
 Problem : Suppose you have some data on which you want to do left or right padding. 
-But couchbase doesn't provide any inbuilt function for that.
+But couchbase doesn't provide any inbuilt function for that. To solve this problem
+I have written custom function.
 
 Sample Bucket :
-"products" :
+"products-sample" :
 {
 "type" : "products",
 "id" : "123455677",
